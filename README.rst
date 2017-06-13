@@ -6,10 +6,6 @@ pytest-sipp
     :target: https://travis-ci.org/vodik/pytest-sipp
     :alt: See Build Status on Travis CI
 
-.. image:: https://ci.appveyor.com/api/projects/status/github/vodik/pytest-sipp?branch=master
-    :target: https://ci.appveyor.com/project/vodik/pytest-sipp/branch/master
-    :alt: See Build Status on AppVeyor
-
 A small plugin to automate sipp tests with pytest
 
 ----
