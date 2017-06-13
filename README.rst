@@ -6,24 +6,16 @@ pytest-sipp
     :target: https://travis-ci.org/sangoma/pytest-sipp
     :alt: See Build Status on Travis CI
 
-A small plugin to automate sipp tests with pytest
+Automate `sipp`_ testing with `pytest_` and `pysipp`_. Orchestrate
+python test code with multiple sipp processes.
 
-----
+Still unforuntately dependend on some of our internal pytest plugins
+which we're slowly openning up. Currently still requires logging
+support from our soon to be released pytest-logging plugging
+(different from the one on PyPI from the saltstack guys).
 
-This `Pytest`_ plugin was generated with `Cookiecutter`_ along with `@hackebrot`_'s `Cookiecutter-pytest-plugin`_ template.
-
-
-Features
---------
-
-* TODO
-
-
-Requirements
-------------
-
-* TODO
-
+Still also needs our documentation moved to here. That's coming
+shortly as well.
 
 Installation
 ------------
@@ -54,15 +46,11 @@ Issues
 
 If you encounter any problems, please `file an issue`_ along with a detailed description.
 
-.. _`Cookiecutter`: https://github.com/audreyr/cookiecutter
-.. _`@hackebrot`: https://github.com/hackebrot
-.. _`MIT`: http://opensource.org/licenses/MIT
-.. _`BSD-3`: http://opensource.org/licenses/BSD-3-Clause
 .. _`GNU GPL v3.0`: http://www.gnu.org/licenses/gpl-3.0.txt
-.. _`Apache Software License 2.0`: http://www.apache.org/licenses/LICENSE-2.0
-.. _`cookiecutter-pytest-plugin`: https://github.com/pytest-dev/cookiecutter-pytest-plugin
-.. _`file an issue`: https://github.com/vodik/pytest-sipp/issues
+.. _`file an issue`: https://github.com/sangoma/pytest-sipp/issues
 .. _`pytest`: https://github.com/pytest-dev/pytest
+.. _`sipp`: https://github.com/sipp/SIPp
+.. _`pysipp`: https://github.com/sipp/pysipp
 .. _`tox`: https://tox.readthedocs.io/en/latest/
 .. _`pip`: https://pypi.python.org/pypi/pip/
 .. _`PyPI`: https://pypi.python.org/pypi
