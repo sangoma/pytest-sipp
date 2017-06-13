@@ -35,7 +35,7 @@ def sipp_testdir(testdir):
             return True
 
         @pytest.fixture
-        def sippscen(request, mocker):
+        def sippscen(request):
             sippscen = mock.MagicMock()
             sippscen.has_media = False
             sippscen.abort = False

@@ -1,3 +1,4 @@
+mock
 pytest>=3.0.0
 pytest-exceptional>=0.1.1
 git+https://github.com/sipp/pysipp#egg=pysipp
