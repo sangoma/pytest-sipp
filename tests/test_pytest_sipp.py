@@ -44,9 +44,10 @@ def sipp_testdir(testdir):
             if isinstance(request.node, SIPpTest):
                 assert run_scenario.called
 
-        # We never actually invoke sipp for the unit tests, but sipp_test won't
-        # actually run if the binary isn't found. Fake it for CI.
-        mock.patch('pytest_sipp.which', lambda *a, **kw: '/usr/bin/sipp').start()
+        # We never actually invoke sipp for the unit tests, but
+        # sipp_test won't actually run if the binary isn't found. Fake
+        # it for CI.
+        mock.patch('pytest_sipp.which', lambda *a, **kw: 'sipp').start()
     ''')
 
     return testdir

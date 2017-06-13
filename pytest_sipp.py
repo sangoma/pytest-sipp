@@ -1,13 +1,10 @@
 import os.path
 import re
-import functools
 import pytest
 import pysipp
-from contextlib import contextmanager
 from pytest_exceptional import PytestException
 from _pytest import fixtures
 from _pytest.python import transfer_markers, Metafunc
-from _pytest.compat import getfuncargnames
 
 try:
     from shutil import which
@@ -302,7 +299,7 @@ def pytest_generate_tests(metafunc):
     # Handle parameterization of regular tests that use the sippscen
     # fixture directly, instead of the sipp_test wrapper
     if (not isinstance(metafunc.function, SIPpTestDescription)
-        and 'sippscen' in metafunc.funcargnames):
+            and 'sippscen' in metafunc.funcargnames):
         generate_sipp_tests(metafunc, None)
 
 

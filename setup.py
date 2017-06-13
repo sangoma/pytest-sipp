@@ -14,7 +14,7 @@ install_requires = [
 
 
 try:
-    from shutil import which
+    from shutil import which  # noqa
 except ImportError:
     install_requires.append('backports.shutil_which')
 
