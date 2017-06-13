@@ -2,8 +2,8 @@
 pytest-sipp
 ===========
 
-.. image:: https://travis-ci.org/vodik/pytest-sipp.svg?branch=master
-    :target: https://travis-ci.org/vodik/pytest-sipp
+.. image:: https://travis-ci.org/sangoma/pytest-sipp.svg?branch=master
+    :target: https://travis-ci.org/sangoma/pytest-sipp
     :alt: See Build Status on Travis CI
 
 A small plugin to automate sipp tests with pytest
