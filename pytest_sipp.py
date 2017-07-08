@@ -4,7 +4,7 @@ import pytest
 import pysipp
 from pytest_exceptional import PytestException
 from _pytest import fixtures
-from _pytest.python import transfer_markers, Metafunc
+from _pytest.python import transfer_markers, Metafunc, PyobjMixin
 
 try:
     from shutil import which
@@ -38,7 +38,7 @@ class SIPpNotFound(PytestException):
         tw.line()
 
 
-class SIPpTest(pytest.Item):
+class SIPpTest(PyobjMixin, pytest.Item):
     def __init__(self, name, parent, obj, config=None, callspec=None,
                  keywords=None, session=None, fixtureinfo=None,
                  description=None):
