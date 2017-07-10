@@ -38,7 +38,8 @@ the coverage at least stays the same before you submit a pull request.
 License
 -------
 
-Distributed under the terms of the `GNU GPL v3.0`_ license, "pytest-sipp" is free and open source software
+Distributed under the terms of the `GNU GPL v3.0`_ license,
+"pytest-sipp" is free and open source software
 
 
 Issues
