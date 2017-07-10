@@ -12,16 +12,7 @@ except ImportError:
     from backports.shutil_which import which
 
 
-_DEFAULT_ROOT = None
-
-
-def default_root(config):
-    global _DEFAULT_ROOT
-
-    if _DEFAULT_ROOT is None:
-        _DEFAULT_ROOT = config.hook.pytest_sipp_collect_scripts(config=config)
-
-    return _DEFAULT_ROOT
+SCENARIO_ROOT = None
 
 
 class SIPpNotFound(PytestException):
@@ -82,7 +73,7 @@ def generate_sipp_tests(metafunc, scen_node, **kwargs):
     else:
         settings = kwargs
 
-    scripts_root = settings.get('scen_root', default_root(metafunc.config))
+    scripts_root = settings.get('scen_root', SCENARIO_ROOT)
     plugins = settings.get('pysipp_plugins', [])
     exclude_expr = settings.get('exclude_expr')
 
@@ -94,8 +85,10 @@ def generate_sipp_tests(metafunc, scen_node, **kwargs):
         return
     elif os.path.isdir(scen_node):
         scen_path = scen_node
-    else:
+    elif scripts_root:
         scen_path = os.path.join(scripts_root, scen_node)
+    else:
+        raise ValueError("Don't know where to find {}".format(scen_node))
 
     if exclude_expr:
         class reject_by_pattern(object):
@@ -289,6 +282,18 @@ def pytest_addoption(parser):
 
 
 @pytest.hookimpl
+def pytest_configure(config):
+    def set_scenario_root(path):
+        global SCENARIO_ROOT
+        SCENARIO_ROOT = path
+
+    config.hook.pytest_sipp_scenario_root.call_historic(
+        set_scenario_root,
+        kwargs=dict(config=config)
+    )
+
+
+@pytest.hookimpl
 def pytest_pycollect_makeitem(collector, name, obj):
     if collector.funcnamefilter(name) and isinstance(obj, SIPpTestDescription):
         return list(gensipptests(collector, name, obj))
@@ -317,8 +322,8 @@ def scen_db_path(request):
     """
     sipp_conf = request.node.get_marker('sipp_conf')
     if sipp_conf:
-        return sipp_conf.kwargs.get('scen_root', default_root(request.config))
-    return default_root(request.config)
+        return sipp_conf.kwargs.get('scen_root', SCENARIO_ROOT)
+    return SCENARIO_ROOT
 
 
 @pytest.fixture
@@ -336,8 +341,8 @@ def pytest_runtest_protocol(item, nextitem):
 @pytest.hookimpl
 def pytest_addhooks(pluginmanager):
     class SIPpHook:
-        @pytest.hookspec(firstresult=True)
-        def pytest_sipp_collect_scripts(config):
+        @pytest.hookspec(historic=True)
+        def pytest_sipp_scenario_root(config):
             """Specify the default root for sipp scripts"""
 
         @pytest.hookspec(firstresult=True)
